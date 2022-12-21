@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../configs/app_route.dart';
 import '../../utils/style.dart';
 
 
@@ -12,16 +13,34 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+
+
+  bool isHidden = false;
+
+  var _usernameController = TextEditingController();
+  var _passwordController = TextEditingController();
+
+
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar( title: Center(child: const Text("หน้าเข้าสู่ระบบ")),),
+      // appBar: AppBar( title: Center(child: Text("หน้าเข้าสู่ระบบ")),),
       body: Container(
         decoration: const BoxDecoration(),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(height: 80,),
                 Style().showLogo(),
                 Style().mySizebox(),
                 userForm(),
@@ -49,8 +68,9 @@ class _LoginPageState extends State<LoginPage> {
     child: RaisedButton(
       color: Colors.indigoAccent,
       onPressed: () {
+
         },
-      child: Text(
+      child: const Text(
         'เข้าสู่ระบบ',
         style: TextStyle(color: Colors.white),
       ),
@@ -63,8 +83,9 @@ class _LoginPageState extends State<LoginPage> {
     child: RaisedButton(
       color: Colors.indigo,
       onPressed: () {
+        Navigator.pushNamed(context, AppRoute.registerRoute);
       },
-      child: Text(
+      child: const Text(
         'สมัครสมาชิก',
         style: TextStyle(color: Colors.white),
       ),
@@ -75,15 +96,17 @@ class _LoginPageState extends State<LoginPage> {
     margin: EdgeInsets.only(top: 10),
     width: 270.0,
     child: TextField(
-      decoration: InputDecoration(
-        prefixIcon:  Icon(
+      keyboardType: TextInputType.name,
+      controller: _usernameController,
+      decoration: const InputDecoration(
+         prefixIcon:  Icon(
           Icons.account_box,
           color: Colors.blueAccent,
         ),
         labelStyle: TextStyle(
           color: Colors.blue,
         ),
-        labelText: 'User :',
+        labelText: 'Email :',
         enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.blueAccent),),
         focusedBorder: OutlineInputBorder(
@@ -99,6 +122,8 @@ class _LoginPageState extends State<LoginPage> {
     margin: EdgeInsets.only(top: 10),
     width: 270.0,
     child: TextField(
+      obscureText: isHidden,
+      controller: _passwordController,
       decoration: InputDecoration(
         prefixIcon:  Icon(
           Icons.lock,
@@ -107,6 +132,11 @@ class _LoginPageState extends State<LoginPage> {
         labelStyle: TextStyle(
           color: Colors.blue,
         ),
+        suffixIcon: IconButton(
+            icon: isHidden
+                ? Icon(Icons.visibility_off)
+                : Icon(Icons.visibility),
+            onPressed: togglePasswordVisibility),
         labelText: 'Password :',
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.blueAccent),),
@@ -117,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
     ),
   );
 
-
+  void togglePasswordVisibility() => setState(() => isHidden = !isHidden);
 
 
 }

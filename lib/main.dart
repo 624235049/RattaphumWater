@@ -3,6 +3,8 @@ import 'package:rattaphumwater/pages/home/home.dart';
 import 'package:rattaphumwater/pages/login/login_page.dart';
 import 'package:rattaphumwater/pages/screen/splash_screen.dart';
 
+import 'configs/app_route.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
+      routes: AppRoute().getAll,
       home:  LoginPage(),
       // initialRoute: '/',
       // routes: {
