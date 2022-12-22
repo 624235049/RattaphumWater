@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../utils/logout.dart';
+
 
 
 class HomeCs extends StatefulWidget {
@@ -13,7 +15,17 @@ class _HomeCsState extends State<HomeCs> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      appBar: AppBar(title: Text("หน้าลูกค้า"),),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text("Customer Page" ,style: TextStyle(color: Colors.indigo),),
+        iconTheme: IconThemeData(color: Colors.indigo),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.cancel , color: Colors.indigo , size: 32,),
+            onPressed: () => signOutProcess(context),
+          ),
+        ],
+      ),
     );
   }
 }

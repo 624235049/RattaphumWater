@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../configs/api.dart';
+import '../../configs/app_route.dart';
+import '../../utils/dialog.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -8,7 +13,18 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+
+
+
 class _HomePageState extends State<HomePage> {
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -16,10 +32,11 @@ class _HomePageState extends State<HomePage> {
         title: Text("Home"),
       ),
 
-
-
-
-
     );
+
+
   }
+
+
+
 }
