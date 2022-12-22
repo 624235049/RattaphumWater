@@ -315,8 +315,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
     await Dio().get(apipath).then((value) {
       if(value.toString() == 'true') {
-        // Navigator.pop(context);
-        print("สำเร็จจจจ");
+        Navigator.pop(context);
       } else {
       normalDialog(context,"ไม่สำเร็จ");
       }

@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^4.0.4
   geolocator: ^8.2.1
+  shared_preferences: ^2.0.10
 
 
 dev_dependencies:
