@@ -37,8 +37,10 @@ dependencies:
   dio: ^4.0.4
   geolocator: ^8.2.1
   shared_preferences: ^2.0.10
-
-
+  image_picker: ^0.8.3+3
+  file_utils: ^1.0.1
+  open_file: ^3.2.0
+  pdf: ^3.8.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -72,6 +74,11 @@ flutter:
 
   assets:
     - assets/images/app_icon.jpg
+    - assets/images/crytstal.png
+    - assets/images/nestlelogo.png
+    - assets/images/namthiplogo.png
+    - assets/images/singlogo.png
+    - assets/images/account.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

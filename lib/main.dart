@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:rattaphumwater/pages/admin/home_admin/home_admin.dart';
+import 'package:rattaphumwater/pages/admin/screen/CRUD/category.dart';
 import 'package:rattaphumwater/pages/home/home.dart';
 import 'package:rattaphumwater/pages/login/login_page.dart';
 import 'package:rattaphumwater/pages/screen/splash_screen.dart';
@@ -26,7 +27,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: AppRoute().getAll,
       home:  SplashScreen(),
-
     );
   }
 }
