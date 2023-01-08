@@ -40,7 +40,14 @@ dependencies:
   image_picker: ^0.8.3+3
   file_utils: ^1.0.1
   open_file: ^3.2.0
+  intl: ^0.18.0
   pdf: ^3.8.4
+  firebase_messaging: ^11.2.5
+  firebase_core: ^1.11.0
+  sqflite: ^2.0.2
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,6 +61,8 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+dependency_overrides:
+  firebase_core_platform_interface: 4.5.1
 
 # The following section is specific to Flutter.
 flutter:

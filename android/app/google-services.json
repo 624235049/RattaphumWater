@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "391536226918",
+    "firebase_url": "https://book-shop-4ccae-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "book-shop-4ccae",
+    "storage_bucket": "book-shop-4ccae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391536226918:android:42bba8dfb60ec372deb3a7",
+        "android_client_info": {
+          "package_name": "com.example.ppsgasproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391536226918-k2ivpunkmg9r4j254dqplufejnh662jr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYaA89vn8HyzOYBqqTyUKt5ixEKDrpQWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391536226918-k2ivpunkmg9r4j254dqplufejnh662jr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "391536226918-2aafvcd1tqdhje9vrirsuktabfgrbdl3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ppsgasproject"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391536226918:android:6fd8f2e03babf1cadeb3a7",
+        "android_client_info": {
+          "package_name": "com.example.rattaphumwater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391536226918-k2ivpunkmg9r4j254dqplufejnh662jr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYaA89vn8HyzOYBqqTyUKt5ixEKDrpQWY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391536226918-k2ivpunkmg9r4j254dqplufejnh662jr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "391536226918-2aafvcd1tqdhje9vrirsuktabfgrbdl3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ppsgasproject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

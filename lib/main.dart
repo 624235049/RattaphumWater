@@ -1,16 +1,19 @@
 
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:rattaphumwater/pages/admin/home_admin/home_admin.dart';
-import 'package:rattaphumwater/pages/admin/screen/CRUD/category.dart';
-import 'package:rattaphumwater/pages/home/home.dart';
-import 'package:rattaphumwater/pages/login/login_page.dart';
 import 'package:rattaphumwater/pages/screen/splash_screen.dart';
-
 import 'configs/app_route.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

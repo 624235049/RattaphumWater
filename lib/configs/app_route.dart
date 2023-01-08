@@ -10,6 +10,10 @@ import 'package:rattaphumwater/pages/admin/screen/CRUD/namthip/namthip_product.d
 import 'package:rattaphumwater/pages/admin/screen/CRUD/nestle/product_nestle.dart';
 import 'package:rattaphumwater/pages/admin/screen/CRUD/sing/sing_product.dart';
 import 'package:rattaphumwater/pages/customer/home_cs/home_cs.dart';
+import 'package:rattaphumwater/pages/customer/screen/screen_order/crystal_list.dart';
+import 'package:rattaphumwater/pages/customer/screen/screen_order/namthip_list.dart';
+import 'package:rattaphumwater/pages/customer/screen/screen_order/nestle_list.dart';
+import 'package:rattaphumwater/pages/customer/screen/screen_order/sing_list.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/home_emp.dart';
 import 'package:rattaphumwater/register/register_page.dart';
 
@@ -30,6 +34,10 @@ class AppRoute {
   static const show_account = "ShowAccount";
   static const add_accountemp = "AddAccountEmp";
   static const addccountecs = "AddAccountCs";
+  static const crystallistorder = "CrystalListOrder";
+  static const namthiplistorder = "NamthipListOrder";
+  static const netlelistorder = "NestleListOrder";
+  static const singlistorder = "SingListOrder";
   final _route = <String, WidgetBuilder>{
 
     homeRoute: (context) =>  HomePage(),
@@ -45,6 +53,10 @@ class AppRoute {
     show_account: (context) => ShowAccount(),
     add_accountemp: (context) => AddAccountEmp(),
     addccountecs: (context) => AddAccountCs(),
+    crystallistorder: (context) => CrystalListOrder(),
+    namthiplistorder: (context) => NamthipListOrder(),
+    netlelistorder: (context) => NestleListOrder(),
+    singlistorder: (context) => SingListOrder(),
   };
 
   get getAll => _route;
