@@ -5,13 +5,14 @@ import '../model/cart_model.dart';
 
 class SQLiteHelper {
   final String nameDatabase = 'rattaphumwater.db';
-  String tableDatabase = 'orderdetailTable';
+  String tableDatabase = 'orderTable';
   int version = 1;
 
   final String idColumn = 'id';
   final String water_id = 'water_id';
   final String brand_water = 'brand_water';
   final String price = 'price';
+  final String size = 'size';
   final String amount = 'amount';
   final String sum = 'sum';
   final String distance = 'distance';
@@ -24,9 +25,13 @@ class SQLiteHelper {
   Future<Null> initDatabase() async {
     await openDatabase(join(await getDatabasesPath(), nameDatabase),
         onCreate: (db, version) => db.execute(
-            'CREATE TABLE $tableDatabase ($idColumn INTEGER PRIMARY KEY, $water_id TEXT,$brand_water TEXT,$price TEXT,$amount TEXT,$sum TEXT,$distance TEXT,$transport TEXT)'),
+            'CREATE TABLE $tableDatabase ($idColumn INTEGER PRIMARY KEY, $water_id TEXT,$brand_water TEXT,$price TEXT,$size TEXT,$amount TEXT,$sum TEXT,$distance TEXT,$transport TEXT)'),
         version: version);
   }
+
+
+
+
 
   Future<Database> connectedDatabase() async {
     return openDatabase(join(await getDatabasesPath(), nameDatabase));
@@ -45,6 +50,7 @@ class SQLiteHelper {
     }
   }
 
+
   Future<List<CartModel>> readAllDataFormSQLite() async {
     Database database = await connectedDatabase();
     List<CartModel> cartModels = [];
@@ -57,6 +63,7 @@ class SQLiteHelper {
 
     return cartModels;
   }
+
 
   Future<Null> deleteDataWhereId(int id) async {
     Database database = await connectedDatabase();

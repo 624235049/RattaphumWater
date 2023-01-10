@@ -4,7 +4,7 @@ import '../../../utils/logout.dart';
 import '../screen/account_page.dart';
 import '../screen/cart_history_page.dart';
 import '../screen/main_water_page.dart';
-import '../screen/notification_page.dart';
+import '../screen/history_page.dart';
 
 
 
@@ -22,7 +22,7 @@ class _HomeCsState extends State<HomeCs> {
 
   List pages = [
     const MainWaterPage(),
-    const NotificationPage(),
+    const HistoryPage(),
     const CartHistoryPage(),
     const AccountPage(),
   ];

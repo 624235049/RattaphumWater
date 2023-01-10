@@ -28,7 +28,57 @@ import 'package:flutter/material.dart';
         fontFamily: 'Lato',
       ),
     );
+    Text showTitleB(String title) => Text(
+      title,
+      style: TextStyle(
+          fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.bold),
+    );
 
+    Text showHeadTitle(String title) => Text(
+      title,
+      style: TextStyle(
+          fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.bold),
+    );
+    Text showTitle(String title) => Text(
+      title,
+      style: TextStyle(
+          fontSize: 24.0,
+          color: Colors.blue.shade900,
+          fontWeight: FontWeight.bold),
+    );
+
+    Text showTitleH2(String title) => Text(
+      title,
+      style: TextStyle(
+        fontSize: 18.0,
+        color: Colors.blue.shade900,
+        fontWeight: FontWeight.bold,
+        fontFamily: 'Lato',
+      ),
+    );
+
+
+    Text showTitleKbank(String title) => Text(
+      title,
+      style: TextStyle(
+          fontSize: 18.0,
+          color: Color.fromARGB(255, 51, 101, 53),
+          fontWeight: FontWeight.bold),
+    );
+
+    Text showTitleHC(String title) => Text(
+      title,
+      style: TextStyle(
+          fontSize: 18.0, color: Colors.red, fontWeight: FontWeight.bold),
+    );
+
+    Text showTitleH3(String title) => Text(
+      title,
+      style: TextStyle(
+          fontSize: 14.0,
+          color: Color(0xff222222),
+          fontWeight: FontWeight.bold),
+    );
 
 
     BoxDecoration myBoxDecoretion(String namePic) {

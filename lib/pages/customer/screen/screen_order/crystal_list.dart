@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rattaphumwater/model/user_model.dart';
+import 'package:toast/toast.dart';
 
 import '../../../../configs/api.dart';
 import '../../../../helper/sqlite_helper.dart';
@@ -29,9 +30,10 @@ class _CrystalListOrderState extends State<CrystalListOrder> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    findlatlng();
     readDataAdmin();
     readCrystalProduct();
-    findlatlng();
+
   }
   Position? userlocation;
   UserModel? userModel;
@@ -173,16 +175,13 @@ class _CrystalListOrderState extends State<CrystalListOrder> {
                         borderRadius: BorderRadius.circular(5),
                       ),
                       onPressed: () async {
+
                         Navigator.pop(context);
                         // print(
                         //     'Order ${gasModels[index].gas_size_id} = $amount');
                         addOrderToCart(index);
-                        // if (nameUser != null) {
-                        //   addOrderToCart(index);
-                        // } else {
-                        //   normalDialog(
-                        //       context, 'กรุณาเข้าสู่ระบบก่อนสั่งซื้อขอบคุณค่ะ');
-                        // }
+
+
                       },
                       child: Text(
                         'ใส่ตะกร้า',
@@ -220,6 +219,7 @@ class _CrystalListOrderState extends State<CrystalListOrder> {
     setState(() {
       lat1 = positon.latitude;
       lng1 = positon.longitude;
+      print("$lat1 , $lng1");
     });
   }
 
@@ -240,17 +240,14 @@ class _CrystalListOrderState extends State<CrystalListOrder> {
       print(" useradmin ===> ${userModel!.id}");
     }
     });
-
-
   }
 
 
   Future<Null> addOrderToCart(int index) async {
     String water_id = productmodels[index].waterId!;
     String brand_water = productmodels[index].brandName!;
-    String brand_name = productmodels[index].brandName!;
     String price = productmodels[index].price!;
-
+    String size = productmodels[index].size!;
     int priceInt = int.parse(price);
     int sumInt = priceInt * amount;
     double lat2M = double.parse(lat2!);
@@ -266,39 +263,45 @@ class _CrystalListOrderState extends State<CrystalListOrder> {
       'water == $water_id, brand_water $brand_water , price == $price amount == $amount, sum == $sumInt, distance == $distanceString, transport == $transport ',
     );
 
-    // Map<String, dynamic> map = Map();
-    // map['gas_id'] = water_id;
-    // map['gas_brand_name'] = brand_water;
-    // map['price'] = price;
-    // map['amount'] = amount.toString();
-    // map['sum'] = sumInt.toString();
-    // map['distance'] = distanceString;
-    // map['transport'] = transport.toString();
-    //
-    // print('map ==> ${map.toString()}');
-    // CartModel cartModel = CartModel.fromJson(map);
-    //
-    // var object = await SQLiteHelper().readAllDataFormSQLite();
-    // print('object lenght == ${object.length}');
-    //
-    // if (object.length == 0) {
-    //   await SQLiteHelper().insertDataToSQLite(cartModel).then((value) => {
-    //     print('insert Sucess'),
-    //   });
-    // } else {
-    //   String brandSQLite = object[0].brand_water!;
-    //   if (brandSQLite.isNotEmpty) {
-    //     await SQLiteHelper().insertDataToSQLite(cartModel).then((value) => {
-    //       print('insert Sucess'),
-    //
-    //     });
-    //   } else {
-    //     normalDialog(context, 'รายการสั่งซื้อผิดพลาด !');
-    //   }
-    // }
+    Map<String, dynamic> map = Map();
+    map['water_id'] = water_id;
+    map['brand_water'] = brand_water;
+    map['price'] = price;
+    map['size'] = size;
+    map['amount'] = amount.toString();
+    map['sum'] = sumInt.toString();
+    map['distance'] = distanceString;
+    map['transport'] = transport.toString();
+
+    print('map ==> ${map.toString()}');
+    CartModel cartModel = CartModel.fromJson(map);
+
+    var object = await SQLiteHelper().readAllDataFormSQLite();
+    print('object lenght == ${object.length}');
+
+    if (object.length == 0) {
+      await SQLiteHelper().insertDataToSQLite(cartModel).then((value) => {
+        print('insert Sucess'),
+      });
+    } else {
+      String brandSQLite = object[0].brand_water!;
+      if (brandSQLite.isNotEmpty) {
+        await SQLiteHelper().insertDataToSQLite(cartModel).then((value) => {
+          print('insert Sucess'),
+          showToast("Insert Sucess")
+        });
+      } else {
+        normalDialog(context, 'รายการสั่งซื้อผิดพลาด !');
+      }
+    }
   }
 
-
+  void showToast(String string) {
+    Toast.show(
+      string,
+      duration: Toast.lengthLong,
+    );
+  }
 
 
   Container showImageGas(BuildContext context, int index) {

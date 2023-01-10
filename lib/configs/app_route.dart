@@ -10,6 +10,8 @@ import 'package:rattaphumwater/pages/admin/screen/CRUD/namthip/namthip_product.d
 import 'package:rattaphumwater/pages/admin/screen/CRUD/nestle/product_nestle.dart';
 import 'package:rattaphumwater/pages/admin/screen/CRUD/sing/sing_product.dart';
 import 'package:rattaphumwater/pages/customer/home_cs/home_cs.dart';
+import 'package:rattaphumwater/pages/customer/payment/confirm_payment.dart';
+import 'package:rattaphumwater/pages/customer/screen/main_water_page.dart';
 import 'package:rattaphumwater/pages/customer/screen/screen_order/crystal_list.dart';
 import 'package:rattaphumwater/pages/customer/screen/screen_order/namthip_list.dart';
 import 'package:rattaphumwater/pages/customer/screen/screen_order/nestle_list.dart';
@@ -38,6 +40,8 @@ class AppRoute {
   static const namthiplistorder = "NamthipListOrder";
   static const netlelistorder = "NestleListOrder";
   static const singlistorder = "SingListOrder";
+  static const confirmpayment = "ConfirmPayment";
+  static const home_cd = "HomeCs";
   final _route = <String, WidgetBuilder>{
 
     homeRoute: (context) =>  HomePage(),
@@ -57,6 +61,8 @@ class AppRoute {
     namthiplistorder: (context) => NamthipListOrder(),
     netlelistorder: (context) => NestleListOrder(),
     singlistorder: (context) => SingListOrder(),
+    confirmpayment: (context) => ConfirmPayment(),
+    home_cd: (context) => HomeCs(),
   };
 
   get getAll => _route;
