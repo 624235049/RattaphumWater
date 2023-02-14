@@ -39,6 +39,8 @@ dependencies:
   toast: ^0.2.1
   intl: ^0.18.0
   pdf: ^3.8.4
+  path_provider: ^2.0.2
+  syncfusion_flutter_pdf: ^19.1.69-beta
   firebase_messaging: ^11.2.5
   firebase_core: ^1.11.0
   sqflite: ^2.0.2

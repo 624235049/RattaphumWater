@@ -4,7 +4,7 @@
 import 'dart:math';
 
 class API {
-  String BASE_URL = 'https://7238-183-88-76-63.ap.ngrok.io';
+  String BASE_URL = 'https://71a5-183-89-156-107.ap.ngrok.io';
   String keyId = 'id';
   String google_api_key = "AIzaSyA-3wWU2slh9qxhfkUX3uZZBdwKSvmlNB0";
   String keyType = 'ChooseType';
@@ -38,6 +38,17 @@ class API {
 
       return distance;
     } catch (e) {}
+  }
+
+  List<String> createStringArray(String string) {
+    String resultString = string.substring(1, string.length - 1);
+    List<String> list = resultString.split(',');
+    int index = 0;
+    for (var item in list) {
+      list[index] = item.trim();
+      index++;
+    }
+    return list;
   }
 
 

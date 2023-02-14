@@ -9,6 +9,7 @@ import 'package:rattaphumwater/pages/admin/screen/CRUD/add_category.dart';
 import 'package:rattaphumwater/pages/admin/screen/CRUD/namthip/namthip_product.dart';
 import 'package:rattaphumwater/pages/admin/screen/CRUD/nestle/product_nestle.dart';
 import 'package:rattaphumwater/pages/admin/screen/CRUD/sing/sing_product.dart';
+import 'package:rattaphumwater/pages/admin/screen/order_water/print_bill.dart';
 import 'package:rattaphumwater/pages/customer/home_cs/home_cs.dart';
 import 'package:rattaphumwater/pages/customer/payment/confirm_payment.dart';
 import 'package:rattaphumwater/pages/customer/screen/main_water_page.dart';
@@ -42,6 +43,7 @@ class AppRoute {
   static const singlistorder = "SingListOrder";
   static const confirmpayment = "ConfirmPayment";
   static const home_cd = "HomeCs";
+  static const print_bill = "PrintBill";
   final _route = <String, WidgetBuilder>{
 
     homeRoute: (context) =>  HomePage(),
@@ -62,6 +64,7 @@ class AppRoute {
     netlelistorder: (context) => NestleListOrder(),
     singlistorder: (context) => SingListOrder(),
     confirmpayment: (context) => ConfirmPayment(),
+    print_bill: (context) => PrintBillWater(),
     home_cd: (context) => HomeCs(),
   };
 
