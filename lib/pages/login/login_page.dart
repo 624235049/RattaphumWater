@@ -68,7 +68,6 @@ class _LoginPageState extends State<LoginPage> {
                       height: 200,
                     ),
                   ],
-
                 ),
               ),
             ),
@@ -139,10 +138,6 @@ class _LoginPageState extends State<LoginPage> {
     preferences.setString(API().keyType, userModel.chooseType!);
     preferences.setString(API().keyName, userModel.name!);
 
-    // MaterialPageRoute route = MaterialPageRoute(
-    //   builder: (context) => myWidget,
-    // );
-    // Navigator.pushAndRemoveUntil(context, route, (route) => false);
   }
 
   Widget RegisterButton() => Container(

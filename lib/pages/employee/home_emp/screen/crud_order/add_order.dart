@@ -3,36 +3,37 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:rattaphumwater/configs/api.dart';
-import 'package:rattaphumwater/pages/admin/widget/app_text_fiel_string.dart';
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../../configs/api.dart';
+import '../../../../../utils/dialog.dart';
+import '../../../../admin/widget/app_text_field.dart';
 
-import '../../../../utils/style.dart';
-import '../../widget/app_text_field.dart';
 
-class AddCateGory extends StatefulWidget {
-  const AddCateGory({Key? key}) : super(key: key);
+
+class AddOrderEmp extends StatefulWidget {
+  const AddOrderEmp({Key? key}) : super(key: key);
 
   @override
-  State<AddCateGory> createState() => _AddCateGoryState();
+  State<AddOrderEmp> createState() => _AddOrderEmpState();
 }
 
-class _AddCateGoryState extends State<AddCateGory> {
+class _AddOrderEmpState extends State<AddOrderEmp> {
   File? file;
 
   String? brand_name;
   var sizecontroller = TextEditingController();
+  var usernamecontroller = TextEditingController();
   var quantitycontroller = TextEditingController();
   var pricecontroller = TextEditingController();
   String selectedValue = "Sing";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(
-          "Add CateGory",
+          "AddOrder Page",
           style: TextStyle(color: Colors.indigo),
         ),
         iconTheme: const IconThemeData(color: Colors.indigo),
@@ -40,7 +41,7 @@ class _AddCateGoryState extends State<AddCateGory> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            groupImage(),
+            SizedBox(height: 30,),
             Container(
               width: 300,
               child: DropdownButtonFormField(
@@ -54,11 +55,13 @@ class _AddCateGoryState extends State<AddCateGory> {
               ),
             ),
             AppTextField(
+                textController: usernamecontroller, hintText: "ชื่อ", icon: Icons.add),
+            AppTextField(
                 textController: sizecontroller, hintText: "ขนาด", icon: Icons.add),
             AppTextField(
                 textController: quantitycontroller, hintText: "จำนวน", icon: Icons.add),
             AppTextField(
-                textController: pricecontroller, hintText: "จำนวน", icon: Icons.add),
+                textController: pricecontroller, hintText: "รวม", icon: Icons.add),
             SizedBox(
               height: 40,
             ),
@@ -78,14 +81,13 @@ class _AddCateGoryState extends State<AddCateGory> {
     ];
     return menuItems;
   }
-
   Widget saveButton() {
     return Container(
       width: 200.0,
       child: RaisedButton.icon(
         color: Colors.blueAccent,
         onPressed: () {
-          uploadGasAndInsertData();
+          orderThread();
         },
         icon: Icon(
           Icons.save,
@@ -99,64 +101,34 @@ class _AddCateGoryState extends State<AddCateGory> {
     );
   }
 
-  Future<Null> uploadGasAndInsertData() async {
+  Future<Null> orderThread() async {
     var price = pricecontroller.text;
     var quantity = quantitycontroller.text;
     var size = sizecontroller.text;
-    String urlUpload = '${API().BASE_URL}/rattaphumwater/saveProductWater.php';
+    var sum = pricecontroller.text;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? user_id = preferences.getString('id');
+    String? user_name = preferences.getString('Name');
+    DateTime dateTime = DateTime.now();
+    // print(dateTime.toString());
+    String order_date_time = DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
 
-    Random random = Random();
-    int i = random.nextInt(1000000);
-    String nameFile = 'water$i.jpg';
+    String url =
+        '${API()
+        .BASE_URL}/rattaphumwater/addOrder.php?isAdd=true&order_date_time=$order_date_time&user_id=$user_id&user_name=$user_name&water_id=none&size=[$size]&distance=0&transport=0&brand_water=[$brand_name]&price=$price&amount=[$quantity]&sum=[$sum]&emp_id=none&payment_status=payondelivery&status=userorder';
 
-    try {
-      Map<String, dynamic> map = Map();
-      map['file'] =
-          await MultipartFile.fromFile(file!.path, filename: nameFile);
-      FormData formData = FormData.fromMap(map);
+    await Dio().get(url).then((value) {
+      if (value.toString() == 'true') {
+        Navigator.pop(context);
+        normalDialog(context, 'เพิ่มการสั่งซื้อสำเร็จ');
 
-      await Dio().post(urlUpload, data: formData).then((value) async {
-        String water_image = '/rattaphumwater/product/$nameFile';
+      } else {
+        normalDialog(context, 'ไม่สามารถสั่งซื้อได้กรุณาลองใหม่');
+      }
+    });
 
-        String urlInsertData = '${API().BASE_URL}/rattaphumwater/addproductwater.php?isAdd=true&waterImg=$water_image&brand_name=$brand_name&size=$size&quantity=$quantity&price=$price';
-        await Dio().get(urlInsertData).then((value) {
-          Navigator.pop(context);
-        });
-      });
-    } catch (e) {}
   }
 
-  Row groupImage() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        IconButton(
-          icon: Icon(Icons.add_a_photo),
-          onPressed: () => chooseImage(ImageSource.camera),
-        ),
-        Container(
-          width: 250.0,
-          height: 250.0,
-          child: file == null ? Style().showLogo() : Image.file(file!),
-        ),
-        IconButton(
-          icon: Icon(Icons.add_photo_alternate),
-          onPressed: () => chooseImage(ImageSource.gallery),
-        ),
-      ],
-    );
-  }
 
-  Future<Null> chooseImage(ImageSource source) async {
-    try {
-      var object = await ImagePicker().getImage(
-        source: source,
-        maxWidth: 800.0,
-        maxHeight: 800.0,
-      );
-      setState(() {
-        file = File(object!.path);
-      });
-    } catch (e) {}
-  }
+
 }

@@ -18,6 +18,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool isHidden = false;
 
   Position? userlocation;
+
   var _nameController = TextEditingController();
   var _emailController = TextEditingController();
   var _passwordController = TextEditingController();
@@ -114,7 +115,7 @@ class _RegisterPageState extends State<RegisterPage> {
               return 'กรุณากรอก name ด้วย ค่ะ';
             } else {}
           },
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.account_box,
               color: Colors.blueAccent,
@@ -142,9 +143,11 @@ class _RegisterPageState extends State<RegisterPage> {
           validator: (value) {
             if (value.toString().isEmpty) {
               return 'กรุณากรอก เบอร์โทร ด้วย ค่ะ';
-            } else {}
+            } else {
+
+            }
           },
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             prefixIcon: Icon(
               Icons.phone,
               color: Colors.blueAccent,

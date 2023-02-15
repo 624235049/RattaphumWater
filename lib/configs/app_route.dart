@@ -18,6 +18,8 @@ import 'package:rattaphumwater/pages/customer/screen/screen_order/namthip_list.d
 import 'package:rattaphumwater/pages/customer/screen/screen_order/nestle_list.dart';
 import 'package:rattaphumwater/pages/customer/screen/screen_order/sing_list.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/home_emp.dart';
+import 'package:rattaphumwater/pages/employee/home_emp/screen/crud_order/add_order.dart';
+import 'package:rattaphumwater/pages/employee/home_emp/screen/crud_order/edit_order.dart';
 import 'package:rattaphumwater/register/register_page.dart';
 
 import '../pages/admin/screen/CRUD/crystal/product_crystal.dart';
@@ -44,6 +46,8 @@ class AppRoute {
   static const confirmpayment = "ConfirmPayment";
   static const home_cd = "HomeCs";
   static const print_bill = "PrintBill";
+  static const addorder_emp = "AddOrderEmp";
+  static const editorder_emp = "EditOrderEmp";
   final _route = <String, WidgetBuilder>{
 
     homeRoute: (context) =>  HomePage(),
@@ -66,6 +70,7 @@ class AppRoute {
     confirmpayment: (context) => ConfirmPayment(),
     print_bill: (context) => PrintBillWater(),
     home_cd: (context) => HomeCs(),
+    addorder_emp: (context) => AddOrderEmp(),
   };
 
   get getAll => _route;
