@@ -41,8 +41,6 @@ dependencies:
   pdf: ^3.8.4
   path_provider: ^2.0.2
   syncfusion_flutter_pdf: ^19.1.69-beta
-  firebase_messaging: ^11.2.5
-  firebase_core: ^1.11.0
   sqflite: ^2.0.2
   flutter_svg: ^0.23.0+1
   steps_indicator: ^1.3.0

@@ -4,10 +4,8 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:rattaphumwater/configs/app_route.dart';
 import 'package:rattaphumwater/pages/admin/widget/app_text_fiel_string.dart';
 import 'package:rattaphumwater/utils/style.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -134,7 +132,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
               RaisedButton(
                 textColor: Colors.white,
                 color: Colors.grey,
-                child: Text(
+                child: const Text(
                   'Select Image',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
@@ -144,7 +142,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
               RaisedButton(
                 textColor: Colors.white,
                 color: Colors.indigo,
-                child: Text(
+                child: const Text(
                   'Confirm Order',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),

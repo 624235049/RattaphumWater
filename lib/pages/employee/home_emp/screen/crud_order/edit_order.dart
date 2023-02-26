@@ -198,22 +198,22 @@ class _EditOrderEmpState extends State<EditOrderEmp> {
                   Navigator.pop(context);
                   editproductMySQL();
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.check,
                   color: Colors.blue,
                 ),
-                label: Text(
+                label: const Text(
                   'ตกลง',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
               FlatButton.icon(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(
+                icon: const Icon(
                   Icons.clear,
                   color: Colors.red,
                 ),
-                label: Text(
+                label: const Text(
                   'ยกเลิก',
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),

@@ -19,7 +19,6 @@ class _SingProductState extends State<SingProduct> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     readWaterProduct();
   }
@@ -135,7 +134,7 @@ class _SingProductState extends State<SingProduct> {
                   });
                 },
                 color: Colors.green,
-                child: Text(
+                child: const Text(
                   'ยืนยัน',
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
@@ -143,7 +142,7 @@ class _SingProductState extends State<SingProduct> {
               ),
               FlatButton(
                 onPressed: () => Navigator.pop(context),
-                child: Text(
+                child: const Text(
                   'ยกเลิก',
                   style: TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
