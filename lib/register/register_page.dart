@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:rattaphumwater/configs/api.dart';
 import 'package:rattaphumwater/utils/dialog.dart';
-
-import '../configs/app_route.dart';
 import '../utils/style.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -113,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
           validator: (value) {
             if (value.toString().isEmpty) {
               return 'กรุณากรอก name ด้วย ค่ะ';
-            } else {}
+            }
           },
           decoration: const InputDecoration(
             prefixIcon: Icon(

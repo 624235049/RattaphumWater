@@ -9,6 +9,7 @@ import 'package:steps_indicator/steps_indicator.dart';
 import '../../../model/order_model.dart';
 import '../../../utils/dialog.dart';
 import '../../../utils/style.dart';
+import 'follow_delivery_map.dart';
 
 
 
@@ -81,24 +82,24 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
             TextButton(
               onPressed: () async {
-                // if (orderModels[index].status != 'Finish') {
-                //   if (orderModels[index].riderId != 'none') {
-                //     MaterialPageRoute route = MaterialPageRoute(
-                //       builder: (context) => FollowTrackingDelivery(
-                //         orderModel: orderModels[index],
-                //       ),
-                //     );
-                //     Navigator.push(context, route).then((value) async {});
-                //   } else {
-                //     normalDialog(
-                //         context,
-                //         'รายการของท่านยังไม่ได้ทำการจัดส่ง'
-                //        );
-                //   }
-                // } else {
-                //   normalDialog(context, "รายการของท่านสำเร็จแล้ว");
-                // }
-                // print("${orderModels[index].riderId}");
+                if (orderModels[index].status != 'Finish') {
+                  if (orderModels[index].empId != 'none') {
+                    MaterialPageRoute route = MaterialPageRoute(
+                      builder: (context) => FollowTrackingDelivery(
+                        orderModel: orderModels[index],
+                      ),
+                    );
+                    Navigator.push(context, route).then((value) async {});
+                  } else {
+                    normalDialog(
+                        context,
+                        'รายการของท่านยังไม่ได้ทำการจัดส่ง'
+                       );
+                  }
+                } else {
+                  normalDialog(context, "รายการของท่านสำเร็จแล้ว");
+                }
+                print("${orderModels[index].empId}");
               },
               child: Text(
                 'ติดตามการจัดส่ง',
@@ -171,6 +172,9 @@ class _HistoryPageState extends State<HistoryPage> {
       ),
     );
   }
+
+
+
 
   Future<Null> cancleOrderUser(int index) async {
     String order_id = orderModels[index].orderId!;

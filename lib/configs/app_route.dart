@@ -22,7 +22,9 @@ import 'package:rattaphumwater/pages/employee/home_emp/screen/crud_order/add_ord
 import 'package:rattaphumwater/pages/employee/home_emp/screen/crud_order/edit_order.dart';
 import 'package:rattaphumwater/register/register_page.dart';
 
+import '../model/order_model.dart';
 import '../pages/admin/screen/CRUD/crystal/product_crystal.dart';
+import '../pages/customer/screen/follow_delivery_map.dart';
 import '../pages/home/home.dart';
 class AppRoute {
 
@@ -48,6 +50,8 @@ class AppRoute {
   static const print_bill = "PrintBill";
   static const addorder_emp = "AddOrderEmp";
   static const editorder_emp = "EditOrderEmp";
+  static const follow_map_cs = "FollowTrackingDelivery";
+
   final _route = <String, WidgetBuilder>{
 
     homeRoute: (context) =>  HomePage(),
@@ -71,6 +75,7 @@ class AppRoute {
     print_bill: (context) => PrintBillWater(),
     home_cd: (context) => HomeCs(),
     addorder_emp: (context) => AddOrderEmp(),
+    follow_map_cs: (context) => FollowTrackingDelivery(orderModel: OrderModel(),),
   };
 
   get getAll => _route;

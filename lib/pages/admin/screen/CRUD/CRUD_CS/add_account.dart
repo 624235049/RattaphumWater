@@ -18,11 +18,11 @@ class _AddAccountCsState extends State<AddAccountCs> {
   bool isHidden = false;
 
   Position? userlocation;
-  var _nameController = TextEditingController();
-  var _emailController = TextEditingController();
-  var _passwordController = TextEditingController();
-  var _phoneController = TextEditingController();
-  var _addressController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _addressController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   double? lat,lng;
   @override
@@ -48,7 +48,7 @@ class _AddAccountCsState extends State<AddAccountCs> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "Add Account Customer",
           style: TextStyle(color: Colors.indigo),
         ),

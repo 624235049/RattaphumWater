@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/screen/crud_order/edit_order.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/screen/map_follow/follow_map_customer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../configs/api.dart';
 import '../../../configs/app_route.dart';
 import '../../../model/order_model.dart';
@@ -28,7 +29,6 @@ class _HomeEmpState extends State<HomeEmp> {
   List<List<String>> listSums = [];
   List<int> totals = [];
   List<List<String>> listusers = [];
-
 
   @override
   void initState() {
@@ -66,9 +66,7 @@ class _HomeEmpState extends State<HomeEmp> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: () {
-
-                  },
+                  onTap: () {},
                   child: AppIcon(
                     icon: Icons.fact_check,
                     iconSize: 24,
@@ -148,7 +146,9 @@ class _HomeEmpState extends State<HomeEmp> {
                   'สถานะการชำระเงิน : ${orderModels[index].paymentStatus}'),
               Style()
                   .showTitleH3('รหัสผู้จัดส่ง : ${orderModels[index].empId}'),
-              Style().showTitleH3('สถานะการจัดส่ง : รอการยืนยัน'),
+              orderModels[index].status.toString() != 'RiderHandle'
+                  ? Style().showTitleH3("สถานะการจัดส่ง : รอการยืนยัน")
+                  : Style().showTitleH3("สถานะการจัดส่ง : ยืนยันการจัดส่งแล้ว"),
               ListView.builder(
                 itemCount: listnameWater[index].length,
                 shrinkWrap: true,
@@ -225,7 +225,7 @@ class _HomeEmpState extends State<HomeEmp> {
                         ),
                       );
                       Navigator.push(context, route).then(
-                            (value) => readOrderProduct(),
+                        (value) => readOrderProduct(),
                       );
                     },
                     child: Text("แก้ไข"),
@@ -235,7 +235,8 @@ class _HomeEmpState extends State<HomeEmp> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      cancleOrderUser(index).then((value) => readOrderProduct());
+                      cancleOrderUser(index)
+                          .then((value) => readOrderProduct());
                     },
                     child: Text("ลบ"),
                   ),
@@ -244,7 +245,8 @@ class _HomeEmpState extends State<HomeEmp> {
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.green),
                     ),
                     onPressed: () {
                       MaterialPageRoute route = MaterialPageRoute(
@@ -254,8 +256,21 @@ class _HomeEmpState extends State<HomeEmp> {
                       );
                       Navigator.push(context, route);
                     },
-
                     child: Icon(Icons.navigation),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      updateStatusConfirmOrder(index).then((value) {
+                        print("success update status riderhandle");
+                      });
+                    },
+                    child: const Text(
+                      "กำลังจัดส่ง",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
@@ -275,6 +290,28 @@ class _HomeEmpState extends State<HomeEmp> {
       normalDialog2(
           context, 'ยกเลิกรายการสั่งซื้อสำเร็จ', 'รายการสั่งซื้อที่ $order_id');
     });
+  }
+
+  Future<Null> updateStatusConfirmOrder(int index) async {
+    String user_id = orderModels[index].userId!;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? emp_id = preferences.getString('id');
+
+    String path =
+        '${API().BASE_URL}/rattaphumwater/editStatusWhereuser_id_RiderHandle.php?isAdd=true&status=RiderHandle&emp_id=$emp_id&user_id=$user_id';
+
+    await Dio().get(path).then(
+      (value) {
+        if (value.toString() == 'true') {
+          normalDialog2(context, "กำลังจัดส่ง", "อัพเดทสถานะจัดส่ง")
+              .then((value) {
+            setState(() {
+              readOrderProduct();
+            });
+          });
+        }
+      },
+    );
   }
 
   Future<Null> readOrderProduct() async {
