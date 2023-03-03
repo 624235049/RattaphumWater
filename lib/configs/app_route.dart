@@ -18,6 +18,7 @@ import 'package:rattaphumwater/pages/customer/screen/screen_order/namthip_list.d
 import 'package:rattaphumwater/pages/customer/screen/screen_order/nestle_list.dart';
 import 'package:rattaphumwater/pages/customer/screen/screen_order/sing_list.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/home_emp.dart';
+import 'package:rattaphumwater/pages/employee/home_emp/order_succes.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/screen/crud_order/add_order.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/screen/crud_order/edit_order.dart';
 import 'package:rattaphumwater/register/register_page.dart';
@@ -51,6 +52,7 @@ class AppRoute {
   static const addorder_emp = "AddOrderEmp";
   static const editorder_emp = "EditOrderEmp";
   static const follow_map_cs = "FollowTrackingDelivery";
+  static const orderconfirm_success = "OrderConfirmSuccessEmp";
 
   final _route = <String, WidgetBuilder>{
 
@@ -76,6 +78,7 @@ class AppRoute {
     home_cd: (context) => HomeCs(),
     addorder_emp: (context) => AddOrderEmp(),
     follow_map_cs: (context) => FollowTrackingDelivery(orderModel: OrderModel(),),
+    orderconfirm_success: (context) => OrderConfirmSuccessEmp(),
   };
 
   get getAll => _route;

@@ -112,6 +112,7 @@ class _LoginPageState extends State<LoginPage> {
         if (password == userModel.password!) {
           String chooseType = userModel.chooseType!;
           if (chooseType == 'Customer') {
+
             RoutetoService(userModel);
             Navigator.pushNamedAndRemoveUntil(context, AppRoute.homeCs, (route) => false);
           } else if (chooseType == 'Admin') {

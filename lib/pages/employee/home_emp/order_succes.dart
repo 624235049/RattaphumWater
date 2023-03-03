@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/screen/crud_order/edit_order.dart';
 import 'package:rattaphumwater/pages/employee/home_emp/screen/map_follow/follow_map_customer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../configs/api.dart';
-import '../../../configs/app_route.dart';
+
 import '../../../model/order_model.dart';
 import '../../../utils/dialog.dart';
 import '../../../utils/logout.dart';
@@ -14,14 +15,14 @@ import '../../../utils/style.dart';
 import '../../admin/widget/app_icon.dart';
 import '../../admin/widget/big_text.dart';
 
-class HomeEmp extends StatefulWidget {
-  const HomeEmp({Key? key}) : super(key: key);
+class OrderConfirmSuccessEmp extends StatefulWidget {
+  const OrderConfirmSuccessEmp({Key? key}) : super(key: key);
 
   @override
-  State<HomeEmp> createState() => _HomeEmpState();
+  State<OrderConfirmSuccessEmp> createState() => _OrderConfirmSuccessEmpState();
 }
 
-class _HomeEmpState extends State<HomeEmp> {
+class _OrderConfirmSuccessEmpState extends State<OrderConfirmSuccessEmp> {
   List<OrderModel> orderModels = [];
   List<List<String>> listnameWater = [];
   List<List<String>> listAmounts = [];
@@ -41,14 +42,14 @@ class _HomeEmpState extends State<HomeEmp> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "Employee Page",
           style: TextStyle(color: Colors.indigo),
         ),
         iconTheme: IconThemeData(color: Colors.indigo),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.cancel,
               color: Colors.indigo,
               size: 32,
@@ -65,28 +66,30 @@ class _HomeEmpState extends State<HomeEmp> {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppRoute.orderconfirm_success);
-                  },
-                  child: AppIcon(
-                    icon: Icons.fact_check,
-                    iconSize: 24,
+                // GestureDetector(
+                //   onTap: () {
+                //
+                //   },
+                //   child: AppIcon(
+                //     icon: Icons.fact_check,
+                //     iconSize: 24,
+                //   ),
+                // ),
+                Center(
+                  child: BigText(
+                    text: "Successful Order Confirmation",
+                    color: Colors.white,
                   ),
                 ),
-                BigText(
-                  text: "Order Water CateGory",
-                  color: Colors.white,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushNamed(context, AppRoute.addorder_emp);
-                  },
-                  child: AppIcon(
-                    icon: Icons.add,
-                    iconSize: 24,
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //
+                //   },
+                //   child: AppIcon(
+                //     icon: Icons.add,
+                //     iconSize: 24,
+                //   ),
+                // ),
               ],
             ),
             bottom: PreferredSize(
@@ -94,12 +97,12 @@ class _HomeEmpState extends State<HomeEmp> {
               child: Container(
                 child: Center(
                     child: BigText(
-                  text: "Order Employee",
-                  size: 26,
-                )),
+                      text: "CheckOut Order",
+                      size: 20,
+                    )),
                 width: double.maxFinite,
-                padding: EdgeInsets.only(top: 5, bottom: 10),
-                decoration: BoxDecoration(
+                padding: const EdgeInsets.only(top: 5, bottom: 10),
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
@@ -150,7 +153,7 @@ class _HomeEmpState extends State<HomeEmp> {
                   .showTitleH3('รหัสผู้จัดส่ง : ${orderModels[index].empId}'),
               orderModels[index].status.toString() != 'RiderHandle'
                   ? Style().showTitleH3("สถานะการจัดส่ง : รอการยืนยัน")
-                  : Style().showTitleH3("สถานะการจัดส่ง : ยืนยันการจัดส่งแล้ว"),
+                  : Style().showTitleH3("สถานะการจัดส่ง : กำลังจัดส่ง"),
               ListView.builder(
                 itemCount: listnameWater[index].length,
                 shrinkWrap: true,
@@ -219,36 +222,36 @@ class _HomeEmpState extends State<HomeEmp> {
               ),
               Row(
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      MaterialPageRoute route = MaterialPageRoute(
-                        builder: (context) => EditOrderEmp(
-                          orderModel: orderModels[index],
-                        ),
-                      );
-                      Navigator.push(context, route).then(
-                        (value) => readOrderProduct(),
-                      );
-                    },
-                    child: Text("แก้ไข"),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      cancleOrderUser(index)
-                          .then((value) => readOrderProduct());
-                    },
-                    child: Text("ลบ"),
-                  ),
-                  SizedBox(
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     MaterialPageRoute route = MaterialPageRoute(
+                  //       builder: (context) => EditOrderEmp(
+                  //         orderModel: orderModels[index],
+                  //       ),
+                  //     );
+                  //     Navigator.push(context, route).then(
+                  //           (value) => readOrderProduct(),
+                  //     );
+                  //   },
+                  //   child: const Text("แก้ไข"),
+                  // ),
+                  // const SizedBox(
+                  //   width: 10,
+                  // ),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     cancleOrderUser(index)
+                  //         .then((value) => readOrderProduct());
+                  //   },
+                  //   child: Text("ลบ"),
+                  // ),
+                  const SizedBox(
                     width: 10,
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green),
+                      MaterialStateProperty.all<Color>(Colors.green),
                     ),
                     onPressed: () {
                       MaterialPageRoute route = MaterialPageRoute(
@@ -260,7 +263,7 @@ class _HomeEmpState extends State<HomeEmp> {
                     },
                     child: Icon(Icons.navigation),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   ElevatedButton(
@@ -270,7 +273,7 @@ class _HomeEmpState extends State<HomeEmp> {
                       });
                     },
                     child: const Text(
-                      "กำลังจัดส่ง",
+                      "จัดส่งสำเร็จ",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -283,16 +286,6 @@ class _HomeEmpState extends State<HomeEmp> {
     );
   }
 
-  Future<Null> cancleOrderUser(int index) async {
-    String? order_id = orderModels[index].orderId;
-    String url =
-        '${API().BASE_URL}/rattaphumwater/cancleOrderWhereorderId.php?isAdd=true&status=Cancle&order_id=$order_id';
-
-    await Dio().get(url).then((value) {
-      normalDialog2(
-          context, 'ยกเลิกรายการสั่งซื้อสำเร็จ', 'รายการสั่งซื้อที่ $order_id');
-    });
-  }
 
   Future<Null> updateStatusConfirmOrder(int index) async {
     String user_id = orderModels[index].userId!;
@@ -300,12 +293,12 @@ class _HomeEmpState extends State<HomeEmp> {
     String? emp_id = preferences.getString('id');
 
     String path =
-        '${API().BASE_URL}/rattaphumwater/editStatusWhereuser_id_RiderHandle.php?isAdd=true&status=RiderHandle&emp_id=$emp_id&user_id=$user_id';
+        '${API().BASE_URL}/rattaphumwater/editStatusWhereuser_id_RiderHandle.php?isAdd=true&status=Finish&emp_id=$emp_id&user_id=$user_id';
 
     await Dio().get(path).then(
-      (value) {
+          (value) {
         if (value.toString() == 'true') {
-          normalDialog2(context, "กำลังจัดส่ง", "อัพเดทสถานะจัดส่ง")
+          normalDialog2(context, "จัดส่งสำเร็จ", "อัพเดทสถานะจัดส่ง")
               .then((value) {
             setState(() {
               readOrderProduct();

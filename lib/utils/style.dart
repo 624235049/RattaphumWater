@@ -30,13 +30,13 @@ import 'package:flutter/material.dart';
     );
     Text showTitleB(String title) => Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.bold),
     );
 
     Text showHeadTitle(String title) => Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 24.0, color: Colors.black, fontWeight: FontWeight.bold),
     );
     Text showTitle(String title) => Text(
@@ -60,7 +60,7 @@ import 'package:flutter/material.dart';
 
     Text showTitleKbank(String title) => Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 18.0,
           color: Color.fromARGB(255, 51, 101, 53),
           fontWeight: FontWeight.bold),
@@ -68,13 +68,13 @@ import 'package:flutter/material.dart';
 
     Text showTitleHC(String title) => Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 18.0, color: Colors.red, fontWeight: FontWeight.bold),
     );
 
     Text showTitleH3(String title) => Text(
       title,
-      style: TextStyle(
+      style: const TextStyle(
           fontSize: 14.0,
           color: Color(0xff222222),
           fontWeight: FontWeight.bold),
