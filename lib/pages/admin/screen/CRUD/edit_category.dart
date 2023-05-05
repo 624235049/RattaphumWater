@@ -48,7 +48,7 @@ class _EditProductState extends State<EditProduct> {
           "Edit ${brand_name} Product id: ${product_id}",
           style: TextStyle(color: Colors.indigo),
         ),
-        iconTheme: IconThemeData(color: Colors.indigo),
+        iconTheme: const IconThemeData(color: Colors.indigo),
       ),
       body: SingleChildScrollView(
         child: Column(

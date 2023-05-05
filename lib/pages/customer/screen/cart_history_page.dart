@@ -40,24 +40,19 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
   Future<Null> readSQLite() async {
     var object = await SQLiteHelper().readAllDataFormSQLite();
     print('object length ==> ${object.length}');
+    int newTotal = 0; // สร้างตัวแปรใหม่เพื่อเก็บค่า total ที่ถูกคำนวณใหม่
     if (object.length != 0) {
       for (var model in object) {
         String? sumString = model.sum;
         int sumInt = int.parse(sumString!);
-        setState(() {
-          status = false;
-          cartModels = object;
-          total = total + sumInt;
-
-          // gas_id = model.gas_id;
-          // amount = model.amount;
-        });
+        newTotal += sumInt; // เพิ่มราคาสินค้าลงในตัวแปร newTotal
       }
-    } else {
-      setState(() {
-        status = true;
-      });
     }
+    setState(() {
+      status = object.isEmpty; // ถ้า object ว่างเปล่าก็ให้ status เป็น true
+      cartModels = object;
+      total = newTotal; // กำหนดค่า total ให้เท่ากับ newTotal
+    });
   }
 
   @override
@@ -332,7 +327,7 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                 Expanded(
                   flex: 2,
                   child: Text(
-                    'ฺ kg.',
+                    'ฺ${cartModels[index].size} kg.',
                     style: Style().mainh23Title,
                   ),
                 ),
@@ -350,16 +345,20 @@ class _CartHistoryPageState extends State<CartHistoryPage> {
                     icon: Icon(Icons.delete_forever),
                     onPressed: () async {
                       int id = cartModels[index].id!;
+                      int price = int.parse(cartModels[index].price!); // ราคาของสินค้าที่จะลบ
                       print('You Click delete id = $id');
                       await SQLiteHelper().deleteDataWhereId(id).then(
-                        (value) {
+                            (value) {
                           print('delete Success id =$id');
+                          setState(() {
+                            total -= price; // ลบราคาสินค้าที่ถูกลบออกจากค่า total
+                          });
                           readSQLite();
                         },
                       );
                     },
                   ),
-                )
+                ),
               ],
             ),
           );

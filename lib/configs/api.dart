@@ -4,7 +4,7 @@
 import 'dart:math';
 
 class API {
-  String BASE_URL = 'https://99e5-183-88-95-124.ap.ngrok.io';
+  String BASE_URL = 'https://e196-14-207-83-104.ap.ngrok.io';
   String keyId = 'id';
   String google_api_key = "AIzaSyA-3wWU2slh9qxhfkUX3uZZBdwKSvmlNB0";
   String keyType = 'ChooseType';

@@ -314,7 +314,7 @@ class _OrderConfirmSuccessEmpState extends State<OrderConfirmSuccessEmp> {
       orderModels.clear();
     }
     String path =
-        "${API().BASE_URL}/rattaphumwater/getOrderwherestatus_Rider.php?isAdd=true";
+        "${API().BASE_URL}/rattaphumwater/getOrderwherestatus_Rider1.php?isAdd=true";
 
     await Dio().get(path).then((value) {
       // print('value ==> $value');

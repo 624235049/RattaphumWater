@@ -38,7 +38,7 @@ class _FollowMapCustomerState extends State<FollowMapCustomer> {
     orderModel = widget.orderModel;
     user_id = orderModel.userId;
     FindUserWhererider();
-    findlatlng();
+
     super.initState();
   }
 
@@ -63,7 +63,9 @@ class _FollowMapCustomerState extends State<FollowMapCustomer> {
       var result = json.decode(value.data);
       for (var item in result) {
         userModel = UserModel.fromJson(item);
+
       }
+      findlatlng();
     });
   }
   @override
