@@ -104,7 +104,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "CheckOur Order",
           style: TextStyle(color: Colors.indigo),
         ),
@@ -204,7 +204,7 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
 
     await Dio().get(url).then((value) {
       if (value.toString() == 'true') {
-        // updateQtyGas(amount, gas_id);
+
         clearOrderSQLite();
         processUploadInsertData();
 

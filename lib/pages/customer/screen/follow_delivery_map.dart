@@ -43,7 +43,7 @@ class _FollowTrackingDeliveryState extends State<FollowTrackingDelivery> {
     order_id = orderModel!.orderId;
     date_time = orderModel!.orderDateTime;
     FindUserWhererider();
-    findLatLng();
+
     getPolyPoints();
   }
 
@@ -57,6 +57,7 @@ class _FollowTrackingDeliveryState extends State<FollowTrackingDelivery> {
     });
   }
 
+
   Future<Null> FindUserWhererider() async {
     if (userModels.length != 0) {
       userModels.clear();
@@ -69,6 +70,7 @@ class _FollowTrackingDeliveryState extends State<FollowTrackingDelivery> {
       for (var item in result) {
         userModel = UserModel.fromJson(item);
       }
+      findLatLng();
     });
   }
 

@@ -132,8 +132,11 @@ class _NamthipProductState extends State<NamthipProduct> {
                   String url =
                       '${API().BASE_URL}/rattaphumwater/deleteWaterWhereid.php?isAdd=true&water_id=${productModels.waterId}';
                   await Dio().get(url).then((value) {
-                    readWaterProduct();
-                  });
+                    setState(() {
+                      readWaterProduct();
+                    });
+                  }
+                  );
                 },
                 color: Colors.green,
                 child: Text(

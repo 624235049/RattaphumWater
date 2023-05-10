@@ -117,7 +117,7 @@ class _HistoryPageState extends State<HistoryPage> {
         buildListviewMenuGas(index),
         Style().mySizebox(),
         buildTotal(index),
-        Style().mySizebox(),
+       SizedBox(height: 50,)
       ],
     ),
   );
